@@ -1,0 +1,8 @@
+﻿https://learn.microsoft.com/fr-ch/ef/core/
+
+dans le projet EntityFrameworkFactures2025, cliquer sur "packages nuget"
+puis installer les 2 paquets (en version 8) :
+Microsoft.EntityFrameworkCore.Sqlite
+Microsoft.EntityFrameworkCore.Design
+
+dotnet ef dbcontext scaffold "Data Source=C:\Users\yvesc\Documents\GitHub\Factures2025\BaseDeDonnees\facture2025.sqlite" Microsoft.EntityFrameworkCore.Sqlite -p .\EntityFrameworkFactures2025.csproj -f -o Entities -n Entities -c SqliteContext
