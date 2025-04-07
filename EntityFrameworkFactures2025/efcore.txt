@@ -5,4 +5,5 @@ puis installer les 2 paquets (en version 8) :
 Microsoft.EntityFrameworkCore.Sqlite
 Microsoft.EntityFrameworkCore.Design
 
+//dans le dossier du projet dans lequel on veut créer les entities, taper la commande :
 dotnet ef dbcontext scaffold "Data Source=C:\Users\yvesc\Documents\GitHub\Factures2025\BaseDeDonnees\facture2025.sqlite" Microsoft.EntityFrameworkCore.Sqlite -p .\EntityFrameworkFactures2025.csproj -f -o Entities -n Entities -c SqliteContext
