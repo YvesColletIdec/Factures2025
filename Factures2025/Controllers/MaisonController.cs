@@ -15,6 +15,7 @@ namespace Factures2025.Controllers
 
         public IActionResult Index()
         {
+            Console.WriteLine("youpie ça marche");
             return View();
         }
 

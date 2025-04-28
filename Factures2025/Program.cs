@@ -1,3 +1,6 @@
+
+using Entities;
+
 namespace Factures2025
 {
     public class Program
@@ -8,6 +11,8 @@ namespace Factures2025
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //ajouter un service pour se connecter à la base de données
+            builder.Services.AddDbContextFactory<SqliteContext>();
 
             var app = builder.Build();
 
@@ -28,9 +33,10 @@ namespace Factures2025
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Maison}/{action=Index}/{id?}");
+                pattern: "{controller=Article}/{action=Index}/{id?}");
 
             app.Run();
+            
         }
     }
 }

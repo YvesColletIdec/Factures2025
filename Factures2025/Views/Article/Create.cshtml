@@ -1,0 +1,10 @@
+﻿@using Entities
+@model Article
+<h1>Ajout d'un article</h1>
+<form asp-controller="Article" asp-action="Create" method="post">
+    <label>Nom</label>
+    <input asp-for="Nom"/><br />
+    <label>Prix</label>
+    <input asp-for="Prix" /><br />
+    <button type="submit">Enregistrer</button>
+</form>
