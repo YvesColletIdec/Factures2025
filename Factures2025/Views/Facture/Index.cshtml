@@ -1,0 +1,23 @@
+﻿@using Entities
+@model List<Facture>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Num facture</th>
+            <th>Date facture</th>
+            <th>Client</th>
+            <th>Nombre d'articles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Facture f in Model)
+        {
+            <tr>
+                <td>@f.NumFacture</td>
+                <td>@f.DateFacture</td>
+                <td>@f.NumClientNavigation.PrenomNom</td>
+                <td>@f.NombreArticles</td>
+            </tr>
+        }
+    </tbody>
+</table>

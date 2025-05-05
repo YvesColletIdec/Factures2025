@@ -3,8 +3,12 @@
 <h1>Ajout d'un article</h1>
 <form asp-controller="Article" asp-action="Create" method="post">
     <label>Nom</label>
-    <input asp-for="Nom"/><br />
+    <input asp-for="Nom" class="form-control" /><br />
+    <span asp-validation-for="Nom" class="text-danger"></span><br />
     <label>Prix</label>
-    <input asp-for="Prix" /><br />
+    <input type="number" asp-for="Prix" class="form-control" /><br />
+    <span asp-validation-for="Prix" class="text-danger"></span><br />
+    <label>Ma Valeur</label>
+    <input type="text" name="maValeur" /><br /><br />
     <button type="submit">Enregistrer</button>
 </form>

@@ -12,6 +12,7 @@ namespace Factures2025
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             //ajouter un service pour se connecter à la base de données
+            //= SqliteContext ctx = new SqliteContext();
             builder.Services.AddDbContextFactory<SqliteContext>();
 
             var app = builder.Build();

@@ -13,6 +13,8 @@ namespace Factures2025.Controllers
         public IActionResult Index()
         {
             List<Article> maliste = _monContext.Articles.ToList();
+            int nombreArticles = maliste.Count();
+            ViewBag.nombre = nombreArticles;
             return View(maliste);
         }
 
@@ -23,11 +25,18 @@ namespace Factures2025.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Article art)
+        public IActionResult Create(Article art, string maValeur)
         {
-            _monContext.Articles.Add(art);
-            _monContext.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _monContext.Articles.Add(art);
+                _monContext.SaveChanges();
+                return RedirectToAction("Index");
+            } else
+            {
+                return View(art);
+            }
+                
         }
 
         [HttpGet]
