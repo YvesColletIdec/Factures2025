@@ -1,5 +1,6 @@
 
 using Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Factures2025
 {
@@ -14,6 +15,18 @@ namespace Factures2025
             //ajouter un service pour se connecter à la base de données
             //= SqliteContext ctx = new SqliteContext();
             builder.Services.AddDbContextFactory<SqliteContext>();
+
+            //lignes pour l'authentification
+            builder.Services.AddSession();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/Login/Login";
+                options.AccessDeniedPath = "/Maison/AccessDenied";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+            });
+            builder.Services.AddHttpContextAccessor();
+
+
 
             var app = builder.Build();
 
@@ -30,7 +43,11 @@ namespace Factures2025
 
             app.UseRouting();
 
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!HYPER IMPORTANT QUE CETTE LIGNE SOIT AVANT 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
+
 
             app.MapControllerRoute(
                 name: "default",

@@ -17,6 +17,8 @@ public partial class SqliteContext : DbContext
 
     public virtual DbSet<Article> Articles { get; set; }
 
+    public virtual DbSet<Categorie> Categories { get; set; }
+
     public virtual DbSet<Client> Clients { get; set; }
 
     public virtual DbSet<Evenement> Evenements { get; set; }
@@ -41,7 +43,19 @@ public partial class SqliteContext : DbContext
 
             entity.HasIndex(e => e.NumArticle, "IX_Article_NumArticle").IsUnique();
 
-            entity.Property(e => e.Prix).HasColumnType("decimal(10,2)");
+            entity.Property(e => e.CategorieId).HasDefaultValue(1);
+            entity.Property(e => e.Prix).HasColumnType("decimal(10, 2)");
+
+            entity.HasOne(d => d.Categorie).WithMany(p => p.Articles)
+                .HasForeignKey(d => d.CategorieId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<Categorie>(entity =>
+        {
+            entity.ToTable("Categorie");
+
+            entity.Property(e => e.Nom).HasDefaultValue("-");
         });
 
         modelBuilder.Entity<Client>(entity =>

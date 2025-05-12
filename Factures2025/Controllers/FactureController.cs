@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,8 @@ namespace Factures2025.Controllers
         {
             _context = context;
         }
+
+        [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
             //récupère toutes les factures et les clients liés et les facturesarticles

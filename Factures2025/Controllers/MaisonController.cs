@@ -13,6 +13,11 @@ namespace Factures2025.Controllers
             _logger = logger;
         }
 
+        public IActionResult AccessDenied()
+        {
+            return RedirectToAction("Index", "Article");
+        }
+
         public IActionResult Index()
         {
             Console.WriteLine("youpie ça marche");

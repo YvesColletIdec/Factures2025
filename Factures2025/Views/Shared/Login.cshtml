@@ -1,0 +1,28 @@
+﻿@using Entities
+@model Vendeur
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Connexion</h2>
+        <h3>@ViewBag.Message</h3>
+        <form method="post" asp-controller="Login" asp-action="Login">
+            <div class="mb-3">
+                <label for="username" class="form-label">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="username" asp-for="Login" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" asp-for="MotDePasse" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-login">Se connecter</button>
+        </form>
+    </div>
+</body>
+</html>

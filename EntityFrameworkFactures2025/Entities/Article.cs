@@ -11,5 +11,9 @@ public partial class Article
 
     public decimal Prix { get; set; }
 
+    public int CategorieId { get; set; }
+
+    public virtual Categorie Categorie { get; set; } = null!;
+
     public virtual ICollection<FactureArticle> FactureArticles { get; set; } = new List<FactureArticle>();
 }
