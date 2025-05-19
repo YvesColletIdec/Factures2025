@@ -1,0 +1,15 @@
+﻿@{
+            if (TempData["ok"] != null)
+    {
+                <div class="p-3 text-primary-emphasis bg-success border border-primary-subtle rounded-3">
+                  @TempData["ok"]
+                </div>
+            }
+            if (TempData["ko"] != null)
+{
+                <div class="p-3 text-primary-emphasis bg-danger border border-primary-subtle rounded-3">
+                  @TempData["ko"]
+                </div>
+            }
+
+}

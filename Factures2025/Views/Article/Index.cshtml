@@ -11,6 +11,7 @@
             <th>Nom</th>
             <th>Prix</th>
             <th>Catégorie</th>
+            <th>Est Actif?</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
                 <td>@a.Nom</td>
                 <td>@a.PrixCHF</td>
                 <td>@a.Categorie.Nom</td>
+                <td><input type="checkbox" @(a.EstActif ? "checked" : "") readonly value="@a.NumArticle" /></td>
                 <td><a role="button" asp-controller="Article" asp-action="Edit" asp-route-id="@a.NumArticle">Modifier</a></td>
             </tr>
         }

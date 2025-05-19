@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,14 @@ namespace Factures2025.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            //#if DEBUG
+            //            //authentification automatique
+            //            Vendeur v = new Vendeur() { Login = "toto", MotDePasse = "1234"};
+            //            return Login(v);
+            //#else
+            //            return View();
+            //#endif
+
             return View();
         }
 
@@ -35,18 +44,17 @@ namespace Factures2025.Controllers
         [HttpPost]
         public IActionResult Login(Vendeur v)
         {
+            
             Vendeur vendeur = _context.Vendeurs.FirstOrDefault(
-                u => u.Login == v.Login &&
-                u.MotDePasse == v.MotDePasse
+                u => u.Login == v.Login
                 );
-            if (vendeur != null)
+            if (vendeur != null && Security.Verify(v.MotDePasse, vendeur.MotDePasse)) 
             {
-                string claimRole = "user";
                 var userClaims = new[] {
                         //new Claim("Login", v.Login),
                         //new Claim("Role", claimRole) ,
                         new Claim(ClaimTypes.Name, vendeur.Nom),//pour authorize
-                        new Claim(ClaimTypes.Role, claimRole) ,//pour authorize
+                        new Claim(ClaimTypes.Role, vendeur.Role) ,//pour authorize
                         //new Claim("Id", Convert.ToString(vendeur.NumVendeur))
                     };
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(userClaims, "custom");
@@ -58,6 +66,15 @@ namespace Factures2025.Controllers
 
                 //HttpContext.Session.SetString("id", Convert.ToString(v.NumVendeur));
                 //HttpContext.Session.SetString("userName", v.Nom);
+
+                if (User.IsInRole("admin"))
+                {
+                    TempData["ok"] = "salut admin";
+                }
+                else
+                {
+                    TempData["ok"] = "salut user";
+                }
                 return Redirect("/Maison/Index");
 
             } else

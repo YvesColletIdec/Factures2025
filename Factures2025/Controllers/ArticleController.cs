@@ -73,6 +73,8 @@ namespace Factures2025.Controllers
         {
             _monContext.Articles.Update(art);
             _monContext.SaveChanges();
+            TempData["ok"] = "l'article a été sauvé";
+            TempData["ko"] = "zut...";
             return RedirectToAction("Index");
         }
     }

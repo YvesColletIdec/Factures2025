@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <h1>Liste des articles</h1>
+    <div class="d-flex justify-content-start mb-1">
+        <button class="btn btn-success btn-sm">Ajouter un article</button>
+    </div>
+    <style>
+        /* Personnalisation des icônes de tri */
+        th.sorting:after, th.sorting_asc:after, th.sorting_desc:after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-left: 5px;
+        }
+        th.sorting:after {
+        content: "\f0dc"; /* Icône tri non activé (barres) */
+        }
+        th.sorting_asc:after {
+        content: "\f0de"; /* Flèche haut */
+        }
+        th.sorting_desc:after {
+        content: "\f0dd"; /* Flèche bas */
+        }
+        /* Ajustement des largeurs de colonnes */
+        th, td {
+        white-space: nowrap;
+        }
+        th:nth-child(1), td:nth-child(1) {
+        min-width: 100px;
+        }
+        th:nth-child(2), td:nth-child(2) {
+        width: 100%;
+        }
+        th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8),
+        td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8) {
+        width: 1%;
+        }
+        /* Alignement à droite pour la 3ème colonne */
+        th:nth-child(3), td:nth-child(3) {
+        text-align: right;
+        }
+    </style>
+    <p>
+
+
+        <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pill-tab-0" data-bs-toggle="pill" href="#pill-tabpanel-0" role="tab" aria-controls="pill-tabpanel-0" aria-selected="true">Actifs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pill-tab-1" data-bs-toggle="pill" href="#pill-tabpanel-1" role="tab" aria-controls="pill-tabpanel-1" aria-selected="false">Inactifs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" id="pill-tab-2" data-bs-toggle="pill" href="#pill-tabpanel-2" role="tab" aria-controls="pill-tabpanel-2" aria-disabled="true">Disable</a>
+            </li>
+        </ul>
+        <div class="tab-content py-3 mt-2">
+            <div class="tab-pane active" id="pill-tabpanel-0" role="tabpanel" aria-labelledby="pill-tab-0">
+                <div class="container-fluid">
+                    <table id="tableArticles" class="table table-striped table-bordered table-sm table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Prix</th>
+                                <th>Actif</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Ubuntu</td>
+                                <td>0.00</td>
+                                <td><input type="checkbox" checked="checked" /></td>
+                                <td><button class="btn btn-primary btn-sm">Modifier</button></td>
+                                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Linux Mint</td>
+                                <td>0.00</td>
+                                <td><input type="checkbox" checked="checked" /></td>
+                                <td><button class="btn btn-primary btn-sm">Modifier</button></td>
+                                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Windows 11</td>
+                                <td>69.90</td>
+                                <td><input type="checkbox" checked="checked" /></td>
+                                <td><button class="btn btn-primary btn-sm">Modifier</button></td>
+                                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Red Hat</td>
+                                <td>0.00</td>
+                                <td><input type="checkbox" checked="checked" /></td>
+                                <td><button class="btn btn-primary btn-sm">Modifier</button></td>
+                                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Windows 10</td>
+                                <td>54.35</td>
+                                <td><input type="checkbox" checked="checked" /></td>
+                                <td><button class="btn btn-primary btn-sm">Modifier</button></td>
+                                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Android</td>
+                                <td>1.00</td>
+                                <td><input type="checkbox" checked="checked" /></td>
+                                <td><button class="btn btn-primary btn-sm">Modifier</button></td>
+                                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Debian</td>
+                                <td>9.99</td>
+                                <td><input type="checkbox" checked="checked" /></td>
+                                <td><button class="btn btn-primary btn-sm">Modifier</button></td>
+                                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane" id="pill-tabpanel-1" role="tabpanel" aria-labelledby="pill-tab-1">
+                inactifs
+            </div>
+            <div class="tab-pane" id="pill-tabpanel-2" role="tabpanel" aria-labelledby="pill-tab-2">Tab 3 content</div>
+        </div>
+
+
+
+
+        <script>
+            $(document).ready(function () {
+            var table = $('#tableArticles').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "pageLength": 5,
+            "ordering": true,
+            "order": [],
+            "columnDefs": [
+            { "orderable": false, "targets": [2, 3, 4, 5] },
+            { "orderable": true, "targets": [0, 1] }
+            ],
+            "language": {
+            "search": "", // Champ de recherche personnalisé
+            "paginate": {
+            "previous": "Précédent",
+            "next": "Suivant"
+            },
+            "info": "_START_ à _END_ entrée(s) sur _TOTAL_ au total",
+            "infoEmpty" : "Aucune entrée",
+            "infoFiltered": "(filtré de _MAX_ entrées au total)",
+            "zeroRecords": "Aucun enregistrement trouvé",
+            },
+            "dom": "<'row'<'col-md-6'l><'col-md-6 d-flex justify-content-end mb-3'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-md-6'i><'col-md-6 d-flex justify-content-end'p>>",
+            "initComplete": function () {
+            $(".dataTables_filter input")
+            .attr("placeholder", "Rechercher...")
+            .addClass("form-control");
+            }
+            });
+            $('#search').on('keyup', function () {
+            table.search(this.value).draw();
+            });
+            });
+        </script>
+    </p>
+</body>
+</html>

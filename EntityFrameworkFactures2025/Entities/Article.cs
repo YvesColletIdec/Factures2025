@@ -13,6 +13,8 @@ public partial class Article
 
     public int CategorieId { get; set; }
 
+    public bool EstActif { get; set; }
+
     public virtual Categorie Categorie { get; set; } = null!;
 
     public virtual ICollection<FactureArticle> FactureArticles { get; set; } = new List<FactureArticle>();

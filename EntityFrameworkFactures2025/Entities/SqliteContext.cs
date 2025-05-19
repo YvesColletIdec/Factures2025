@@ -44,6 +44,7 @@ public partial class SqliteContext : DbContext
             entity.HasIndex(e => e.NumArticle, "IX_Article_NumArticle").IsUnique();
 
             entity.Property(e => e.CategorieId).HasDefaultValue(1);
+            entity.Property(e => e.EstActif).HasColumnType("BOOLEAN");
             entity.Property(e => e.Prix).HasColumnType("decimal(10, 2)");
 
             entity.HasOne(d => d.Categorie).WithMany(p => p.Articles)
@@ -128,6 +129,8 @@ public partial class SqliteContext : DbContext
             entity.ToTable("Vendeur");
 
             entity.HasIndex(e => e.NumVendeur, "IX_Vendeur_NumVendeur").IsUnique();
+
+            entity.Property(e => e.Role).HasDefaultValue("user");
         });
 
         OnModelCreatingPartial(modelBuilder);

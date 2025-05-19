@@ -7,6 +7,8 @@
     <input asp-for="Nom"/><br />
     <label>Prix</label>
     <input asp-for="Prix" /><br />
+    <label>Est Actif</label>
+    <input asp-for="EstActif" /><br />
     <label>Catégorie</label>
     <select asp-for="CategorieId" asp-items="@ViewBag.listeCategories"></select>
     <button type="submit">Enregistrer</button>
