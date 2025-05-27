@@ -21,13 +21,13 @@ namespace Factures2025.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            //#if DEBUG
-            //            //authentification automatique
-            //            Vendeur v = new Vendeur() { Login = "toto", MotDePasse = "1234"};
-            //            return Login(v);
-            //#else
-            //            return View();
-            //#endif
+#if DEBUG
+            //authentification automatique
+            Vendeur v = new Vendeur() { Login = "toto", MotDePasse = "1234" };
+            return Login(v);
+#else
+                        return View();
+#endif
 
             return View();
         }
@@ -55,7 +55,7 @@ namespace Factures2025.Controllers
                         //new Claim("Role", claimRole) ,
                         new Claim(ClaimTypes.Name, vendeur.Nom),//pour authorize
                         new Claim(ClaimTypes.Role, vendeur.Role) ,//pour authorize
-                        //new Claim("Id", Convert.ToString(vendeur.NumVendeur))
+                        new Claim("Id", Convert.ToString(vendeur.NumVendeur))
                     };
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(userClaims, "custom");
                 //--> il faut laisser custom pour que HttpContext.User.IsAuthenticated soit à True

@@ -61,7 +61,7 @@ namespace Factures2025.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View("Create", client);
         }
 
         // GET: Client/Edit/5

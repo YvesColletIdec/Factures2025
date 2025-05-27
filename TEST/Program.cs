@@ -9,9 +9,11 @@ namespace TEST
         static void Main(string[] args)
         {
 
-            string mdp = "1234";
-            string mdpHAsh = Security.Hash(mdp);
-            Console.WriteLine(mdpHAsh);
+            string mdp = "vendeur1";
+            string mdpChiffre = Security.Hash(mdp);
+            Console.WriteLine(mdpChiffre);
+            bool ok = Security.Verify(mdp, mdpChiffre);
+            Console.WriteLine(ok);
             //ouvre la connexion à la base de données
             //SqliteContext context = new SqliteContext();
 

@@ -1,5 +1,8 @@
 ﻿@using Entities
 @model List<Facture>
+<br />
+<a asp-controller="Facture" asp-action="Create" class="btn btn-primary">Créer une nouvelle Facture</a>
+<br />
 <table class="table table-sm">
     <thead>
         <tr>
@@ -7,6 +10,7 @@
             <th>Date facture</th>
             <th>Client</th>
             <th>Nombre d'articles</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -17,6 +21,7 @@
                 <td>@f.DateFacture</td>
                 <td>@f.NumClientNavigation.PrenomNom</td>
                 <td>@f.NombreArticles</td>
+                <td width="5%"><a asp-controller="Print" asp-action="Print" asp-route-factureId="@f.NumFacture" target="_blank" class="btn btn-primary mx-2">Imprimer</a></td>
             </tr>
         }
     </tbody>
