@@ -15,7 +15,7 @@ namespace Factures2025.Controllers
             _context = context;
         }
 
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
             //récupère toutes les factures et les clients liés et les facturesarticles

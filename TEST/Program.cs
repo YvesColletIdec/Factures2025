@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Helpers;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace TEST
 {
@@ -69,5 +70,24 @@ namespace TEST
             ////string prenomNom = facture.NumClientNavigation.Prenom + " " + facture.NumClientNavigation.Nom;
             //Console.WriteLine($"{facture.NumFacture} : {facture.NumClientNavigation.PrenomNom}");
         }
+
+        static void Main2(string[] args)
+        {
+            string url = "https://localhost:7280/api/ArticleAPI/getArticleById?id=2";
+            HttpClient client = new HttpClient();
+            string s = client.GetStringAsync(url).GetAwaiter().GetResult();
+            MonArticle donnee = JsonConvert.DeserializeObject<MonArticle>(s);
+            Console.WriteLine($"{donnee.Num}, {donnee.LeNomDeLArticle}");
+            Console.ReadLine();
+        }
     }
+
+    public class MonArticle
+    {
+        public int Num { get; set; }
+        public string LeNomDeLArticle { get; set; }
+        public string Categorie { get; set; }
+        public decimal Prix { get; set; }
+    }
+
 }
